@@ -24,13 +24,13 @@ const defaultContactInfo = {
     phone: "+5411 2657 5200",
     email: "mrhood.ventas@hotmail.com",
     address: "Olazabal 4889 - Villa Urquiza",
-    whatsapp: "+5411 2657 5200",
+    whatsapp: "+54 11 2657 5200", // Número actualizado
   },
   mexico: {
-    phone: "+52 55 1304 8491",
+    phone: "+52 55 6536 4142", // Número actualizado
     email: "mrhoodventas@gmail.com",
     address: "Xola 154 Álamos - Ciudad de México y alrededores",
-    whatsapp: "+52 55 1304 8491",
+    whatsapp: "+52 55 6536 4142", // Número actualizado
   },
   caribe: {
     phone: "+52 998 242 6454",
@@ -40,10 +40,10 @@ const defaultContactInfo = {
     whatsapp: "+52 998 242 6454",
   },
   uruguay: {
-    phone: "+598 92 696 828",
+    phone: "+598 92 696 828", // Número actualizado
     email: "ventas@limpiezadecampanas.com.uy",
     address: "Uruguay",
-    whatsapp: "+598 92 696 828",
+    whatsapp: "+598 92 696 828", // Número actualizado
   },
   usa: {
     phone: "",
@@ -55,7 +55,7 @@ const defaultContactInfo = {
     phone: "+5411 2657 5200",
     email: "mrhood.ventas@hotmail.com",
     address: "Olazabal 4889 - Villa Urquiza",
-    whatsapp: "+5411 2657 5200",
+    whatsapp: "+54 11 2657 5200", // Por defecto, usamos el número de Argentina
   },
 }
 

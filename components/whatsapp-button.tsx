@@ -6,13 +6,17 @@ import { motion } from "framer-motion"
 export function WhatsAppButton() {
   const { contactInfo } = useCountry()
 
+  const formatPhoneForWhatsApp = (phone: string) => {
+    return phone.replace(/\+/g, "").replace(/\s/g, "")
+  }
+
   const openWhatsApp = () => {
     if (contactInfo.whatsapp) {
       // Trigger conversion event for WhatsApp
       if (typeof window !== "undefined" && window.gtag) {
         window.gtag("event", "conversion", { send_to: "AW-16466325038/zBc-CJXvk5QZEK7c4Ks9" })
       }
-      window.open(`https://wa.me/${contactInfo.whatsapp.replace(/\+/g, "").replace(/\s/g, "")}`, "_blank")
+      window.open(`https://wa.me/${formatPhoneForWhatsApp(contactInfo.whatsapp)}`, "_blank")
     }
   }
 

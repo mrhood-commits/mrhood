@@ -6,7 +6,7 @@ import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 
 export function ContactSection() {
-  const { language, contactInfo } = useCountry()
+  const { language, contactInfo, country } = useCountry()
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -23,6 +23,38 @@ export function ContactSection() {
         window.gtag("event", "conversion", { send_to: "AW-16466325038/zBc-CJXvk5QZEK7c4Ks9" })
       }
       window.open(`https://wa.me/${formatPhoneForWhatsApp(contactInfo.whatsapp)}`, "_blank")
+    }
+  }
+
+  // Obtener la dirección según el país
+  const getAddress = () => {
+    switch (country) {
+      case "argentina":
+        return "Av. Olazábal, Villa Urquiza, Buenos Aires"
+      case "mexico":
+        return "Xola 154 Álamos, Ciudad de México"
+      case "uruguay":
+        return "Uruguay"
+      case "caribe":
+        return "Playa del Carmen, Cancun, Tulum, Merida"
+      default:
+        return "Av. Olazábal, Villa Urquiza, Buenos Aires"
+    }
+  }
+
+  // Obtener el enlace de Google Maps según el país
+  const getMapLink = () => {
+    switch (country) {
+      case "argentina":
+        return "https://www.google.com/maps/place/Avenida+Olaz%C3%A1bal,+Villa+Urquiza,+Buenos+Aires,+Argentina"
+      case "mexico":
+        return "https://www.google.com/maps/place/Xola+154,+%C3%81lamos,+Ciudad+de+M%C3%A9xico,+CDMX,+M%C3%A9xico"
+      case "uruguay":
+        return "https://www.google.com/maps/place/Uruguay"
+      case "caribe":
+        return "https://www.google.com/maps/place/Playa+del+Carmen,+Quintana+Roo,+M%C3%A9xico"
+      default:
+        return "https://www.google.com/maps/place/Avenida+Olaz%C3%A1bal,+Villa+Urquiza,+Buenos+Aires,+Argentina"
     }
   }
 
@@ -76,12 +108,12 @@ export function ContactSection() {
                 <div>
                   <h4 className="font-semibold mb-1">{language === "es" ? "Dirección" : "Address"}</h4>
                   <a
-                    href="https://www.google.com/maps/place/Avenida+Olaz%C3%A1bal,+Villa+Urquiza,+Buenos+Aires,+Argentina"
+                    href={getMapLink()}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-300 hover:text-[#ccb699] transition-colors flex items-center"
                   >
-                    <span>Av. Olazábal, Villa Urquiza, Buenos Aires</span>
+                    <span>{getAddress()}</span>
                     <ExternalLink className="ml-2 h-4 w-4" />
                   </a>
                 </div>

@@ -2,11 +2,13 @@
 
 import { useEffect, useState } from "react"
 import { useLanguage } from "./language-provider"
+import { useCountry } from "./country-provider"
 
 export function CountryDetector() {
   const [detectedCountry, setDetectedCountry] = useState<string | null>(null)
   const [showBanner, setShowBanner] = useState(false)
   const { t, language } = useLanguage()
+  const { country } = useCountry()
 
   useEffect(() => {
     // Implementación real de geolocalización por IP
