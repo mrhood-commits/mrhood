@@ -98,7 +98,7 @@ export function Clients() {
 
   // Ajustar número de items por slide según el tamaño de pantalla
   const getItemsPerSlide = () => {
-    if (isMobile) return 3 // Cambiado de 2 a 3
+    if (isMobile) return 3
     if (isTablet) return 3
     return 6 // Desktop
   }
@@ -200,14 +200,14 @@ export function Clients() {
                         transition={{ duration: 0.3, delay: index * 0.1 }}
                         whileHover={{ scale: 1.05 }}
                       >
-                        <div className="h-14 sm:h-16 md:h-20 w-full relative flex items-center justify-center">
+                        <div className="h-14 sm:h-16 md:h-20 w-full flex items-center justify-center">
                           <OptimizedImage
                             src={client.logo}
                             alt={client.name}
                             width={100}
                             height={60}
                             priority={slideIndex === currentSlide}
-                            className="client-logo"
+                            className="client-logo max-h-full max-w-full object-contain"
                           />
                         </div>
                       </motion.div>

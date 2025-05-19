@@ -54,7 +54,7 @@ export function OptimizedImage({
   }
 
   return (
-    <div className="relative w-full h-full">
+    <div className="relative w-full h-full flex items-center justify-center">
       {/* Placeholder mientras carga */}
       {isLoading && (
         <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-800 animate-pulse rounded">
@@ -73,6 +73,8 @@ export function OptimizedImage({
         style={{
           objectFit: "contain",
           maxHeight: "100%",
+          maxWidth: "100%",
+          margin: "0 auto",
           ...style,
         }}
         onLoad={handleImageLoad}
