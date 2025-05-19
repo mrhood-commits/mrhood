@@ -12,7 +12,7 @@ export function HowWeDoIt() {
   })
 
   return (
-    <section id="como-lo-hacemos" className="py-20 bg-white">
+    <section id="como-lo-hacemos" className="py-20 bg-white dark:bg-dark-background">
       <div className="container mx-auto px-4">
         <motion.div
           ref={ref}
@@ -31,7 +31,7 @@ export function HowWeDoIt() {
           </motion.h2>
 
           <motion.div
-            className="bg-gradient-to-br from-[#ccb699]/10 to-[#ccb699]/20 rounded-2xl p-8 shadow-lg"
+            className="bg-gradient-to-br from-[#ccb699]/10 to-[#ccb699]/20 dark:from-[#ccb699]/5 dark:to-[#ccb699]/10 rounded-2xl p-8 shadow-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.3 }}
@@ -49,7 +49,7 @@ export function HowWeDoIt() {
           </motion.div>
 
           <motion.p
-            className="text-lg text-center mt-8 text-gray-700 max-w-3xl mx-auto"
+            className="text-lg text-center mt-8 text-gray-700 dark:text-gray-300 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.4 }}

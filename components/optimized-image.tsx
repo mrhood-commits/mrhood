@@ -2,9 +2,10 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
+import { useTheme } from "next-themes"
 
 interface OptimizedImageProps {
   src: string
@@ -28,13 +29,20 @@ export function OptimizedImage({
   onLoad,
 }: OptimizedImageProps) {
   const [isLoading, setIsLoading] = useState(true)
+  const [optimizedSrc, setOptimizedSrc] = useState(src)
+  const { theme } = useTheme()
 
-  // Función para optimizar la URL de la imagen
-  const getOptimizedSrc = (originalSrc: string) => {
-    // En un entorno real, aquí conectaríamos con un servicio de optimización de imágenes
-    // Para esta demo, simplemente devolvemos la URL original
-    return originalSrc
-  }
+  // Optimizar la URL de la imagen según el tema
+  useEffect(() => {
+    // Función para optimizar la URL de la imagen
+    const getOptimizedSrc = (originalSrc: string) => {
+      // En un entorno real, aquí conectaríamos con un servicio de optimización de imágenes
+      // Para esta demo, simplemente devolvemos la URL original
+      return originalSrc
+    }
+
+    setOptimizedSrc(getOptimizedSrc(src))
+  }, [src, theme])
 
   const handleImageLoad = () => {
     setIsLoading(false)
@@ -49,13 +57,13 @@ export function OptimizedImage({
     <div className="relative w-full h-full">
       {/* Placeholder mientras carga */}
       {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-100 animate-pulse rounded">
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-800 animate-pulse rounded">
           <div className="w-8 h-8 border-2 border-[#ccb699] border-t-transparent rounded-full animate-spin"></div>
         </div>
       )}
 
       <Image
-        src={getOptimizedSrc(src) || "/placeholder.svg"}
+        src={optimizedSrc || "/placeholder.svg"}
         alt={alt}
         width={width}
         height={height}

@@ -16,7 +16,7 @@ export function Hero() {
   }
 
   return (
-    <section className="pt-32 pb-20 bg-gradient-to-b from-white to-gray-50">
+    <section className="pt-32 pb-20 bg-gradient-to-b from-white to-gray-50 dark:from-dark-background dark:to-dark-muted">
       <div className="container mx-auto px-4">
         <motion.div
           className="max-w-4xl mx-auto"
@@ -31,7 +31,7 @@ export function Hero() {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <motion.h1
-                className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 bg-gradient-to-r from-black to-[#ccb699] bg-clip-text text-transparent"
+                className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 bg-gradient-to-r from-black to-[#ccb699] dark:from-white dark:to-[#ccb699] bg-clip-text text-transparent"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
@@ -75,7 +75,7 @@ export function Hero() {
           >
             <button
               onClick={scrollToCountrySection}
-              className="flex items-center justify-center text-[#ccb699] hover:text-black transition-colors"
+              className="flex items-center justify-center text-[#ccb699] hover:text-black dark:hover:text-white transition-colors"
               aria-label="Scroll to country selection"
             >
               <ChevronDown className="h-10 w-10 animate-bounce" />

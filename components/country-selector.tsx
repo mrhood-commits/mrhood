@@ -63,7 +63,7 @@ export function CountrySelector() {
   }
 
   return (
-    <section id="country-selector" className="py-20 bg-gray-50 relative">
+    <section id="country-selector" className="py-20 bg-gray-50 dark:bg-dark-muted relative">
       {/* Background image that changes based on hovered country */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         {countries.map(
@@ -92,7 +92,9 @@ export function CountrySelector() {
             ),
         )}
         {/* Default background when no country is hovered */}
-        {!hoveredCountry && <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-gray-100"></div>}
+        {!hoveredCountry && (
+          <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-dark-muted dark:to-dark-background"></div>
+        )}
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -115,7 +117,7 @@ export function CountrySelector() {
                 {language === "es" ? "SELECCIONA TU PAÍS" : "SELECT YOUR COUNTRY"}
               </h2>
             </div>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               {language === "es"
                 ? "Elige tu ubicación para visitar el sitio web de MR HOOD específico para tu país"
                 : "Choose your location to visit the MR HOOD website specific to your country"}
@@ -144,12 +146,12 @@ export function CountrySelector() {
                   className={`block h-full ${!country.url ? "cursor-default" : ""}`}
                   onClick={(e) => country.comingSoon && e.preventDefault()}
                 >
-                  <div className="bg-white p-8 flex flex-col items-center text-center h-full">
+                  <div className="bg-white dark:bg-dark-card p-8 flex flex-col items-center text-center h-full">
                     <span className="text-5xl mb-4">{country.flag}</span>
                     <h3 className="text-xl font-bold mb-2">{country.name}</h3>
 
                     {country.comingSoon ? (
-                      <span className="inline-block mt-4 px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm">
+                      <span className="inline-block mt-4 px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-full text-sm">
                         {language === "es" ? "Próximamente" : "Coming Soon"}
                       </span>
                     ) : (

@@ -5,6 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { useLanguage } from "./language-provider"
+import { ThemeSwitch } from "./theme-switch"
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -28,7 +29,9 @@ export function Header() {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/95 shadow-md backdrop-blur-md" : "bg-white/80 backdrop-blur-sm"
+        isScrolled
+          ? "bg-white/95 dark:bg-dark-background/95 shadow-md backdrop-blur-md"
+          : "bg-white/80 dark:bg-dark-background/80 backdrop-blur-sm"
       }`}
     >
       <div className="container mx-auto px-4 py-4">
@@ -39,14 +42,18 @@ export function Header() {
             </motion.div>
           </Link>
 
-          <motion.button
-            onClick={toggleLanguage}
-            className="px-4 py-2 border border-[#ccb699] rounded-full text-[#ccb699] hover:bg-[#ccb699] hover:text-white transition-colors"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-          >
-            EN | ESP
-          </motion.button>
+          <div className="flex items-center space-x-4">
+            <ThemeSwitch />
+
+            <motion.button
+              onClick={toggleLanguage}
+              className="px-4 py-2 border border-[#ccb699] rounded-full text-[#ccb699] hover:bg-[#ccb699] hover:text-white dark:hover:text-black transition-colors"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+              EN | ESP
+            </motion.button>
+          </div>
         </div>
       </div>
     </motion.header>

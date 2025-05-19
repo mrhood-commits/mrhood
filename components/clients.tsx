@@ -98,7 +98,7 @@ export function Clients() {
 
   // Ajustar número de items por slide según el tamaño de pantalla
   const getItemsPerSlide = () => {
-    if (isMobile) return 2
+    if (isMobile) return 3 // Cambiado de 2 a 3
     if (isTablet) return 3
     return 6 // Desktop
   }
@@ -157,7 +157,7 @@ export function Clients() {
   }, [currentSlide])
 
   return (
-    <section id="clientes" className="py-20 bg-gray-50">
+    <section id="clientes" className="py-20 bg-gray-50 dark:bg-dark-background">
       <div className="container mx-auto px-4">
         <motion.div
           className="text-center mb-12"
@@ -169,7 +169,7 @@ export function Clients() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             {language === "es" ? "NUESTROS CLIENTES" : "OUR CLIENTS"}
           </h2>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-gray-600 dark:text-gray-300">
             {language === "es" ? "Empresas que confían en nosotros" : "Companies that trust us"}
           </p>
         </motion.div>
@@ -187,26 +187,27 @@ export function Clients() {
               {Array.from({ length: totalSlides }).map((_, slideIndex) => (
                 <div
                   key={slideIndex}
-                  className="min-w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6"
+                  className="min-w-full grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6"
                 >
                   {clientsList
                     .slice(slideIndex * itemsPerSlide, (slideIndex + 1) * itemsPerSlide)
                     .map((client, index) => (
                       <motion.div
                         key={`${slideIndex}-${index}`}
-                        className="flex justify-center items-center bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                        className="flex justify-center items-center bg-white dark:bg-dark-card p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow"
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
                         transition={{ duration: 0.3, delay: index * 0.1 }}
                         whileHover={{ scale: 1.05 }}
                       >
-                        <div className="h-16 sm:h-20 w-full relative flex items-center justify-center">
+                        <div className="h-14 sm:h-16 md:h-20 w-full relative flex items-center justify-center">
                           <OptimizedImage
                             src={client.logo}
                             alt={client.name}
-                            width={120}
-                            height={80}
+                            width={100}
+                            height={60}
                             priority={slideIndex === currentSlide}
+                            className="client-logo"
                           />
                         </div>
                       </motion.div>
@@ -219,18 +220,18 @@ export function Clients() {
           {/* Navigation arrows */}
           <button
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white hover:bg-gray-100 rounded-full p-2 shadow-md z-10"
+            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white dark:bg-dark-card hover:bg-gray-100 dark:hover:bg-dark-muted rounded-full p-2 shadow-md z-10"
             aria-label="Previous slide"
           >
-            <ChevronLeft className="h-6 w-6 text-gray-700" />
+            <ChevronLeft className="h-6 w-6 text-gray-700 dark:text-gray-300" />
           </button>
 
           <button
             onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white hover:bg-gray-100 rounded-full p-2 shadow-md z-10"
+            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white dark:bg-dark-card hover:bg-gray-100 dark:hover:bg-dark-muted rounded-full p-2 shadow-md z-10"
             aria-label="Next slide"
           >
-            <ChevronRight className="h-6 w-6 text-gray-700" />
+            <ChevronRight className="h-6 w-6 text-gray-700 dark:text-gray-300" />
           </button>
 
           {/* Dots indicator */}
@@ -240,7 +241,7 @@ export function Clients() {
                 key={index}
                 onClick={() => setCurrentSlide(index)}
                 className={`h-2 rounded-full transition-all ${
-                  currentSlide === index ? "w-6 bg-[#ccb699]" : "w-2 bg-gray-300"
+                  currentSlide === index ? "w-6 bg-[#ccb699]" : "w-2 bg-gray-300 dark:bg-gray-600"
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
