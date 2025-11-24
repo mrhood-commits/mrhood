@@ -2,126 +2,129 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 10%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
-    --primary: 35 33% 70%;
-    --primary-foreground: 0 0% 10%;
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 10%;
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
-    --accent: 0 0% 96%;
-    --accent-foreground: 0 0% 10%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 35 33% 70%;
-    --radius: 0.5rem;
-  }
+:root {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 10%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 10%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 10%;
+  --primary: 35 33% 70%;
+  --primary-foreground: 0 0% 10%;
+  --secondary: 0 0% 96%;
+  --secondary-foreground: 0 0% 10%;
+  --muted: 0 0% 96%;
+  --muted-foreground: 0 0% 45%;
+  --accent: 0 0% 96%;
+  --accent-foreground: 0 0% 10%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 90%;
+  --input: 0 0% 90%;
+  --ring: 35 33% 70%;
+  --radius: 0.5rem;
+}
 
-  .dark {
-    --background: 0 0% 13%;
-    --foreground: 0 0% 100%;
-    --card: 0 0% 16%;
-    --card-foreground: 0 0% 100%;
-    --popover: 0 0% 16%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 35 33% 70%;
-    --primary-foreground: 0 0% 10%;
-    --secondary: 0 0% 20%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 0 0% 20%;
-    --muted-foreground: 0 0% 65%;
-    --accent: 0 0% 20%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 27%;
-    --input: 0 0% 27%;
-    --ring: 35 33% 70%;
-  }
+.dark {
+  --background: 0 0% 13%; /* #222222 */
+  --foreground: 0 0% 100%;
+  --card: 0 0% 16%; /* #2a2a2a */
+  --card-foreground: 0 0% 100%;
+  --popover: 0 0% 16%;
+  --popover-foreground: 0 0% 100%;
+  --primary: 35 33% 70%;
+  --primary-foreground: 0 0% 10%;
+  --secondary: 0 0% 20%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 0 0% 20%;
+  --muted-foreground: 0 0% 65%;
+  --accent: 0 0% 20%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 63% 31%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 27%;
+  --input: 0 0% 27%;
+  --ring: 35 33% 70%;
+}
 
-  * {
-    @apply border-border;
-  }
+html {
+  scroll-behavior: smooth;
+}
 
-  body {
-    @apply bg-background text-foreground;
+body {
+  @apply bg-background text-foreground;
+}
+
+/* Estilos modernos para inputs y botones */
+input,
+textarea,
+select {
+  @apply rounded-lg transition-all duration-200;
+}
+
+button {
+  @apply transition-all duration-200;
+}
+
+/* Animaciones personalizadas */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
   }
 }
 
-@layer utilities {
-  html {
-    scroll-behavior: smooth;
-  }
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
 
-  /* Animaciones personalizadas */
-  @keyframes float {
-    0% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-    100% {
-      transform: translateY(0px);
-    }
-  }
+/* Ocultar elementos de YouTube */
+.ytp-chrome-top,
+.ytp-chrome-bottom,
+.ytp-watermark,
+.ytp-pause-overlay,
+.ytp-youtube-button,
+.ytp-large-play-button,
+.ytp-title,
+.ytp-share-button,
+.ytp-watch-later-button,
+.ytp-embed {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
 
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
-  }
+/* Ajustar el reproductor de YouTube para formato vertical */
+.youtube-container {
+  position: relative;
+  overflow: hidden;
+}
 
-  /* Ocultar elementos de YouTube */
-  .ytp-chrome-top,
-  .ytp-chrome-bottom,
-  .ytp-watermark,
-  .ytp-pause-overlay,
-  .ytp-youtube-button,
-  .ytp-large-play-button,
-  .ytp-title,
-  .ytp-share-button,
-  .ytp-watch-later-button,
-  .ytp-embed {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-  }
+.youtube-vertical-video {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
 
-  /* Ajustar el reproductor de YouTube para formato vertical */
-  .youtube-container {
-    position: relative;
-    overflow: hidden;
-  }
+/* Hack para centrar el contenido del video */
+iframe.youtube-vertical-video {
+  transform: scale(1.5) !important;
+}
 
-  .youtube-vertical-video {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-  }
+/* Estilos para el modo oscuro */
+.dark .client-logo {
+  filter: grayscale(100%) brightness(0.8) contrast(1.2);
+  transition: filter 0.3s ease;
+}
 
-  /* Hack para centrar el contenido del video */
-  iframe.youtube-vertical-video {
-    transform: scale(1.5) !important;
-  }
-
-  /* Estilos para el modo oscuro */
-  .dark .client-logo {
-    filter: grayscale(100%) brightness(0.8) contrast(1.2);
-    transition: filter 0.3s ease;
-  }
-
-  .dark .client-logo:hover {
-    filter: grayscale(0%) brightness(1) contrast(1);
-  }
+.dark .client-logo:hover {
+  filter: grayscale(0%) brightness(1) contrast(1);
 }

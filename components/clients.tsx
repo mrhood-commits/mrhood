@@ -157,7 +157,7 @@ export function Clients() {
   }, [currentSlide])
 
   return (
-    <section id="clientes" className="py-20 bg-white dark:bg-dark-background">
+    <section id="clientes" className="py-20 bg-gray-50 dark:bg-dark-background">
       <div className="container mx-auto px-4">
         <motion.div
           className="text-center mb-12"

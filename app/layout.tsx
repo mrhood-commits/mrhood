@@ -4,7 +4,6 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { LanguageProvider } from "@/components/language-provider"
-import { CountryProvider } from "@/components/country-provider"
 import Script from "next/script"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -26,9 +25,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es" suppressHydrationWarning className={inter.className}>
+    <html lang="es" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/images/mrhoodlogo.png" sizes="any" />
+        {/* Google tag (gtag.js) */}
         <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-16466325038" strategy="afterInteractive" />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
@@ -39,11 +39,9 @@ export default function RootLayout({
          `}
         </Script>
       </head>
-      <body className="antialiased">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <CountryProvider>
-            <LanguageProvider>{children}</LanguageProvider>
-          </CountryProvider>
+      <body className={inter.className}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem={false}>
+          <LanguageProvider>{children}</LanguageProvider>
         </ThemeProvider>
       </body>
     </html>
