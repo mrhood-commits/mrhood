@@ -47,29 +47,37 @@
     --input: 0 0% 27%;
     --ring: 35 33% 70%;
   }
+}
 
+/* Critical base styles with higher specificity for production */
+@layer base {
   * {
     border-color: hsl(var(--border));
   }
 
   html {
     scroll-behavior: smooth;
+    background-color: #222222;
+    color: #ffffff;
   }
 
-  /* Estilos base más específicos para asegurar que se apliquen */
-  html.dark,
-  html.dark body {
-    background-color: #222222 !important;
-    color: #ffffff !important;
+  html.dark {
+    background-color: #222222;
+    color: #ffffff;
   }
 
   body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
+    background-color: #222222;
+    color: #ffffff;
+    min-height: 100vh;
+  }
+
+  html.dark body {
+    background-color: #222222;
+    color: #ffffff;
   }
 }
 
-/* Estilos para inputs y botones */
 @layer components {
   input,
   textarea,
