@@ -21,7 +21,6 @@ export function Clients() {
   const [clientsList, setClientsList] = useState<Array<{ name: string; logo: string }>>([])
   const slidesContainerRef = useRef<HTMLDivElement>(null)
 
-  // Detectar tamaño de pantalla para responsive
   useEffect(() => {
     const checkScreenSize = () => {
       setIsMobile(window.innerWidth < 640)
@@ -36,7 +35,6 @@ export function Clients() {
     }
   }, [])
 
-  // Lista de todos los clientes
   useEffect(() => {
     const clients = [
       { name: "McDonald's", logo: "/images/mcdonalds-logo.png" },
@@ -83,7 +81,6 @@ export function Clients() {
       { name: "Howard Johnson", logo: "/images/howard-johnson.png" },
     ]
 
-    // Mezclar los clientes para mostrarlos en orden aleatorio
     const shuffleArray = (array: typeof clients) => {
       const newArray = [...array]
       for (let i = newArray.length - 1; i > 0; i--) {
@@ -96,11 +93,10 @@ export function Clients() {
     setClientsList(shuffleArray(clients))
   }, [])
 
-  // Ajustar número de items por slide según el tamaño de pantalla
   const getItemsPerSlide = () => {
     if (isMobile) return 3
     if (isTablet) return 3
-    return 6 // Desktop
+    return 6
   }
 
   const itemsPerSlide = getItemsPerSlide()
@@ -114,27 +110,20 @@ export function Clients() {
     setCurrentSlide((prev) => (prev === 0 ? totalSlides - 1 : prev - 1))
   }, [totalSlides])
 
-  // Autoplay con intervalo de 1.5 segundos
   useEffect(() => {
     if (!inView || !autoplay) return
 
     const interval = setInterval(() => {
       nextSlide()
-    }, 1500) // 1.5 segundos
+    }, 1500)
 
     return () => clearInterval(interval)
   }, [nextSlide, inView, autoplay])
 
-  // Resetear el slide actual cuando cambia el número de items por slide
   useEffect(() => {
     setCurrentSlide(0)
   }, [itemsPerSlide])
 
-  // Pausar autoplay al interactuar
-  const handleMouseEnter = () => setAutoplay(false)
-  const handleMouseLeave = () => setAutoplay(true)
-
-  // Implementar desplazamiento suave
   useEffect(() => {
     if (!slidesContainerRef.current) return
 
@@ -142,7 +131,6 @@ export function Clients() {
     container.style.transition = "transform 0.5s ease-in-out"
     container.style.transform = `translateX(-${currentSlide * 100}%)`
 
-    // Eliminar la transición después de completarla para evitar problemas con el autoplay
     const onTransitionEnd = () => {
       container.style.transition = ""
       setTimeout(() => {
@@ -156,8 +144,11 @@ export function Clients() {
     }
   }, [currentSlide])
 
+  const handleMouseEnter = () => setAutoplay(false)
+  const handleMouseLeave = () => setAutoplay(true)
+
   return (
-    <section id="clientes" className="py-20 bg-gray-50 dark:bg-dark-background">
+    <section id="clientes" className="py-20 bg-white dark:bg-dark-background">
       <div className="container mx-auto px-4">
         <motion.div
           className="text-center mb-12"
@@ -166,7 +157,7 @@ export function Clients() {
           transition={{ duration: 0.5 }}
           ref={ref}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
             {language === "es" ? "NUESTROS CLIENTES" : "OUR CLIENTS"}
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300">
@@ -217,7 +208,6 @@ export function Clients() {
             </div>
           </div>
 
-          {/* Navigation arrows */}
           <button
             onClick={prevSlide}
             className="absolute left-0 top-1/2 -translate-y-1/2 bg-white dark:bg-dark-card hover:bg-gray-100 dark:hover:bg-dark-muted rounded-full p-2 shadow-md z-10"
@@ -234,7 +224,6 @@ export function Clients() {
             <ChevronRight className="h-6 w-6 text-gray-700 dark:text-gray-300" />
           </button>
 
-          {/* Dots indicator */}
           <div className="flex justify-center mt-6 gap-2">
             {Array.from({ length: totalSlides }).map((_, index) => (
               <button

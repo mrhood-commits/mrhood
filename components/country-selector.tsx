@@ -2,8 +2,6 @@
 
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
-import { useState } from "react"
-import Image from "next/image"
 import { ArrowRight, Globe } from "lucide-react"
 import { useLanguage } from "./language-provider"
 
@@ -13,7 +11,6 @@ export function CountrySelector() {
     threshold: 0.1,
   })
 
-  const [hoveredCountry, setHoveredCountry] = useState<string | null>(null)
   const { language } = useLanguage()
 
   const countries = [
@@ -21,29 +18,22 @@ export function CountrySelector() {
       name: "Argentina",
       flag: "🇦🇷",
       url: "https://www.limpiezadecampanas.com.ar/",
-      image: "/images/argentina-new.jpeg",
-      position: "center", // La imagen ya está bien centrada
     },
     {
       name: "México",
       flag: "🇲🇽",
       url: "https://www.limpiezadecampanas.com.mx/",
-      image: "/images/mexico-new.jpeg",
-      position: "center 15%", // Ajustado más arriba para centrar la bandera
     },
     {
       name: "Uruguay",
       flag: "🇺🇾",
       url: "https://www.limpiezadecampanas.com.uy/",
-      image: "/images/uruguay-new.jpeg",
-      position: "center 20%", // Mantiene el ajuste anterior
     },
     {
       name: "USA",
       flag: "🇺🇸",
       url: "",
       comingSoon: true,
-      // Sin imagen de fondo para USA
     },
   ]
 
@@ -63,41 +53,8 @@ export function CountrySelector() {
   }
 
   return (
-    <section id="country-selector" className="py-20 bg-gray-50 dark:bg-dark-muted relative">
-      {/* Background image that changes based on hovered country */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        {countries.map(
-          (country) =>
-            country.image && (
-              <motion.div
-                key={country.name}
-                className="absolute inset-0"
-                initial={{ opacity: 0 }}
-                animate={{
-                  opacity: hoveredCountry === country.name ? 0.25 : 0,
-                }}
-                transition={{ duration: 0.5 }}
-              >
-                <Image
-                  src={country.image || "/placeholder.svg"}
-                  alt={country.name}
-                  fill
-                  style={{
-                    objectFit: "cover",
-                    objectPosition: country.position || "center",
-                  }}
-                  priority={country.name === "Argentina"}
-                />
-              </motion.div>
-            ),
-        )}
-        {/* Default background when no country is hovered */}
-        {!hoveredCountry && (
-          <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-dark-muted dark:to-dark-background"></div>
-        )}
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
+    <section id="country-selector" className="py-20 bg-gray-50 dark:bg-dark-muted">
+      <div className="container mx-auto px-4">
         <motion.div
           ref={ref}
           className="max-w-5xl mx-auto"
@@ -113,7 +70,7 @@ export function CountrySelector() {
           >
             <div className="flex items-center justify-center mb-4">
               <Globe className="h-8 w-8 text-[#ccb699] mr-3" />
-              <h2 className="text-3xl md:text-4xl font-bold">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
                 {language === "es" ? "SELECCIONA TU PAÍS" : "SELECT YOUR COUNTRY"}
               </h2>
             </div>
@@ -138,8 +95,6 @@ export function CountrySelector() {
                 }`}
                 variants={item}
                 whileHover={country.comingSoon ? {} : { y: -10, scale: 1.02 }}
-                onHoverStart={() => setHoveredCountry(country.name)}
-                onHoverEnd={() => setHoveredCountry(null)}
               >
                 <a
                   href={country.url || "#"}
@@ -148,7 +103,7 @@ export function CountrySelector() {
                 >
                   <div className="bg-white dark:bg-dark-card p-8 flex flex-col items-center text-center h-full">
                     <span className="text-5xl mb-4">{country.flag}</span>
-                    <h3 className="text-xl font-bold mb-2">{country.name}</h3>
+                    <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">{country.name}</h3>
 
                     {country.comingSoon ? (
                       <span className="inline-block mt-4 px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-full text-sm">

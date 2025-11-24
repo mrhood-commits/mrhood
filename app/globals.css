@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Added base layer with important styles to ensure they load */
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -50,30 +49,40 @@
   }
 
   * {
-    @apply border-border;
+    border-color: hsl(var(--border));
   }
 
   html {
     scroll-behavior: smooth;
   }
 
+  /* Estilos base más específicos para asegurar que se apliquen */
+  html.dark,
+  html.dark body {
+    background-color: #222222 !important;
+    color: #ffffff !important;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
   }
 }
 
-/* Estilos modernos para inputs y botones */
-input,
-textarea,
-select {
-  @apply rounded-lg transition-all duration-200;
+/* Estilos para inputs y botones */
+@layer components {
+  input,
+  textarea,
+  select {
+    @apply rounded-lg transition-all duration-200;
+  }
+
+  button {
+    @apply transition-all duration-200;
+  }
 }
 
-button {
-  @apply transition-all duration-200;
-}
-
-/* Animaciones personalizadas */
+/* Animaciones */
 @keyframes float {
   0% {
     transform: translateY(0px);
@@ -90,7 +99,7 @@ button {
   animation: float 3s ease-in-out infinite;
 }
 
-/* Ocultar elementos de YouTube */
+/* YouTube styles */
 .ytp-chrome-top,
 .ytp-chrome-bottom,
 .ytp-watermark,
@@ -106,7 +115,6 @@ button {
   opacity: 0 !important;
 }
 
-/* Ajustar el reproductor de YouTube para formato vertical */
 .youtube-container {
   position: relative;
   overflow: hidden;
@@ -121,12 +129,11 @@ button {
   object-fit: cover !important;
 }
 
-/* Hack para centrar el contenido del video */
 iframe.youtube-vertical-video {
   transform: scale(1.5) !important;
 }
 
-/* Estilos para el modo oscuro */
+/* Client logos in dark mode */
 .dark .client-logo {
   filter: grayscale(100%) brightness(0.8) contrast(1.2);
   transition: filter 0.3s ease;

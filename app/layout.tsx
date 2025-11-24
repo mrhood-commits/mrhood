@@ -4,6 +4,7 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { LanguageProvider } from "@/components/language-provider"
+import { CountryProvider } from "@/components/country-provider"
 import Script from "next/script"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -25,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es" suppressHydrationWarning>
+    <html lang="es" className="dark" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/images/mrhoodlogo.png" sizes="any" />
         <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-16466325038" strategy="afterInteractive" />
@@ -37,10 +38,20 @@ export default function RootLayout({
            gtag('config', 'AW-16466325038');
          `}
         </Script>
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+            html, body { background-color: #222222; color: #ffffff; }
+            .dark { background-color: #222222; color: #ffffff; }
+          `,
+          }}
+        />
       </head>
-      <body className={`${inter.className} antialiased`} style={{ backgroundColor: "#222222", color: "#ffffff" }}>
+      <body className={`${inter.className} antialiased bg-dark-background text-white min-h-screen`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} forcedTheme="dark">
-          <LanguageProvider>{children}</LanguageProvider>
+          <LanguageProvider>
+            <CountryProvider>{children}</CountryProvider>
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>
