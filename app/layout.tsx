@@ -26,18 +26,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es" className="dark" suppressHydrationWarning>
+    <html lang="es" className="dark" suppressHydrationWarning style={{ backgroundColor: "#222222", color: "#ffffff" }}>
       <head>
         <link rel="icon" href="/images/mrhoodlogo.png" sizes="any" />
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
-            *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-            html{background:#222!important;color:#fff!important}
-            body{background:#222!important;color:#fff!important;min-height:100vh;font-family:system-ui,-apple-system,sans-serif}
-          `,
-          }}
-        />
         <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-16466325038" strategy="afterInteractive" />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
@@ -48,7 +39,10 @@ export default function RootLayout({
          `}
         </Script>
       </head>
-      <body className={`${inter.variable} antialiased`}>
+      <body
+        className={`${inter.variable} antialiased bg-dark-background text-white min-h-screen`}
+        style={{ backgroundColor: "#222222", color: "#ffffff", minHeight: "100vh" }}
+      >
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           <LanguageProvider>
             <CountryProvider>{children}</CountryProvider>
