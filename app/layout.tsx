@@ -26,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es" suppressHydrationWarning>
+    <html lang="es" suppressHydrationWarning className={inter.className}>
       <head>
         <link rel="icon" href="/images/mrhoodlogo.png" sizes="any" />
         <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-16466325038" strategy="afterInteractive" />
@@ -39,7 +39,7 @@ export default function RootLayout({
          `}
         </Script>
       </head>
-      <body className={inter.className}>
+      <body className="antialiased">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <CountryProvider>
             <LanguageProvider>{children}</LanguageProvider>
