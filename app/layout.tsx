@@ -25,10 +25,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es" className="dark" suppressHydrationWarning>
+    <html lang="es" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/images/mrhoodlogo.png" sizes="any" />
-        {/* Google tag (gtag.js) */}
         <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-16466325038" strategy="afterInteractive" />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
@@ -39,8 +38,8 @@ export default function RootLayout({
          `}
         </Script>
       </head>
-      <body className={`${inter.className} antialiased bg-background text-foreground`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+      <body className={`${inter.className} antialiased`} style={{ backgroundColor: "#222222", color: "#ffffff" }}>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} forcedTheme="dark">
           <LanguageProvider>{children}</LanguageProvider>
         </ThemeProvider>
       </body>
